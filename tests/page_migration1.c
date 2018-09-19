@@ -19,10 +19,10 @@ void testcase_prepare(unsigned long nr_tasks)
 	int i, rc;
 	void *page;
 	pagesize = getpagesize();
-	nr_nodes = numa_max_node();
+	nr_nodes = numa_max_node() + 1;
 	if (nr_nodes < 2) {
-		printf("error: available nodes are less than 2, please use a NUMA \
-platform for testing\n");
+		printf("error: numa node number is %d, less than 2, please use a NUMA \
+platform for testing\n", nr_nodes);
 		exit(-1);
 	}
 	char *page_base = mmap(NULL, (PAGE_COUNT + 1) * pagesize, PROT_READ | PROT_WRITE,
